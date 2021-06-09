@@ -1,0 +1,91 @@
+.sideBarContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 0.3;
+    border-right: 1px solid #3c4247;
+}
+
+.headerSideBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a2f32;
+    height: 3.5em;
+    padding: 0 1em;
+}
+
+.headerIcons {
+    display: flex;
+    justify-content: space-around;
+    color: #b1b3b5;
+    flex: 0.4;
+}
+
+.searchBar {
+    background-color: #131c21;
+    display: flex;
+    height: 3em;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #3c4247;
+}
+
+.backgroundSearchBar {
+    background-color: #323739;
+    height: 2em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex: 0.9;
+    color: #b1b3b5;
+    border-radius: 1em;
+}
+
+.inputSearch {
+    outline: none;
+    display: flex;
+    width: 80%;
+    background-color: transparent;
+    border: none;
+    color: #b1b3b5;
+}
+
+.chatsBar {
+    display: flex;
+    flex-direction: column;
+    background-color: #131c21;
+    flex: 1;
+}
+
+.chat {
+    display: flex;
+    padding: 0 1em;
+    height: 4.5em;
+    align-items: center;
+    border-bottom: 1px solid #3c4247;
+}
+
+.chatInf {
+    color: #b1b3b5;
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.chatInfLeft {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-left: 1em;
+}
+
+.chatName {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.chat:hover {
+    background-color: #33383b;
+}
+

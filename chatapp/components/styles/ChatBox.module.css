@@ -1,0 +1,85 @@
+.chatBoxContainer {
+    display: flex;
+    flex: 0.7;
+    flex-direction: column;
+}
+
+.chatBoxHeader {
+    display: flex;
+    background-color: #2a2f32;
+    height: 3.5em;
+    align-items: center;
+    padding: 0 1em;
+}
+
+.chatBoxMessages {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-image: url('../../public/img/pattern.svg');
+}
+
+.chatBoxInputMessage {
+    display: flex;
+    height: 4em;
+    background-color: #1e2428;
+    padding: 0.5em 1em;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chatBoxHeaderRight {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+}
+
+.contactInf {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chatBoxHeaderIcons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #b1b3b5;
+    flex: 0.1;
+}
+
+.chatName {
+    color: #b1b3b5;
+    font-weight: bold;
+}
+
+.lastSeen {
+    color: #b1b3b5;
+    font-weight: lighter;
+}
+
+.chatBoxInputMessageIcons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #b1b3b5;
+    flex: 0.1;
+}
+
+.chatBoxInputMessageInput {
+    display: flex;
+    flex: 0.9;
+}
+
+.chatBoxInputMessageInput > input {
+    width: 95%;
+    outline: none;
+    background-color: #33383b;
+    border: none;
+    padding: 1em;
+    display: flex;
+    border-radius: 2em;
+    color: #b1b3b5;
+}
