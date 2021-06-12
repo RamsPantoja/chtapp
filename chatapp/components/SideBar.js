@@ -6,12 +6,15 @@ import ChatIcon from '@material-ui/icons/Chat';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from './Menu';
+import Badge from '@material-ui/core/Badge';
 
 const SideBar = ({user}) => {
     return (
         <div className={styles.sideBarContainer}>
             <div className={styles.headerSideBar}>
-                <Avatar src={user.image}/>
+                <Badge classes={{dot: styles.dotBadge}} overlap='circle' variant='dot' anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}>
+                    <Avatar src={user.image}/>
+                </Badge>
                 <div className={styles.headerIcons}>
                     <IconButton style={{color: '#b1b3b5'}}><DonutLargeIcon fontSize='small'/></IconButton>
                     <IconButton style={{color: '#b1b3b5'}}><ChatIcon fontSize='small'/></IconButton>

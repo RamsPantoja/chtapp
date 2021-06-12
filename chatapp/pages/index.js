@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles/index.module.css';
 import SideBar from '../components/SideBar';
 import ChatBox from '../components/ChatBox';
 import { getSession } from 'next-auth/client';
+import io from 'socket.io-client';
 
 const home = ({session}) => {
+  let socket;
+  const endPoint = 'http://localhost:5200'
+
+  useEffect(() => {
+    socket = io(endPoint);
+    socket.emit('User connected', { name: session.user.name });
+
+    return () => {
+      socket.emit('disconnect');
+      socket.off();
+    }
+  }, [endPoint]);
+
   return (
     <div className={styles.backgroundApp}>
       <div className={styles.chatContainer}>

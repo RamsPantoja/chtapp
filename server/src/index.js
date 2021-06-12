@@ -3,13 +3,24 @@ import socketio from 'socket.io';
 import http from'http';
 import router from './router';
 
+
 const app = express();
 app.use(router);
 const httpServer = http.createServer(app);
-const io = new socketio.Server(httpServer);
+const io = new socketio.Server(httpServer, {
+    cors: {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST']
+    }
+});
 
 io.on('connection', (socket) => {
-    console.log('We have a new connection!')
+    console.log('We have a new connection!');
+
+    socket.on('User connected', (data) => {
+        console.log(data.name);
+    })
+
     socket.on('disconnect', () => {
         console.log('User has left :(');
     })
