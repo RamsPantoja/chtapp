@@ -16,9 +16,8 @@
 
 .headerIcons {
     display: flex;
+    align-items: center;
     justify-content: space-around;
-    color: #b1b3b5;
-    flex: 0.4;
 }
 
 .searchBar {
@@ -87,5 +86,6 @@
 
 .chat:hover {
     background-color: #33383b;
+    cursor: pointer;
 }
 

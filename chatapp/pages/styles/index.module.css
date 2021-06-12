@@ -9,6 +9,6 @@
     display: flex;
     max-width: 1400px;
     flex: 1;
-    padding: 1em 0;
-    box-shadow: 0 1px 1px 0 rgba(var(--shadow-rgb),.06),0 2px 5px 0 rgba(var(--shadow-rgb),.2);
+    margin: 1em 0;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0, .06),0 2px 5px 0 rgba(0,0,0, .2);
 }

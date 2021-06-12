@@ -1,0 +1,35 @@
+.signInContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #090e11;
+    justify-content: center;
+    align-items: center;
+}
+
+.signInForm {
+    display: flex;
+    background-color: #262d31;
+    padding: 1em;
+    flex-direction: column;
+    color: #cdced0;
+    border-radius: 0.2em;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonToLogIn {
+    text-decoration: none;
+    outline: none;
+    border: none;
+    background-color: #323739;
+    color: #cdced0;
+    padding: 0.5em 1em;
+    border-radius: 1em;
+    font-size: 0.5rem;
+}
+
+.buttonToLogIn:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+}

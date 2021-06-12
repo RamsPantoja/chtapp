@@ -3,18 +3,19 @@ import styles from './styles/SideBar.module.css';
 import Avatar from '@material-ui/core/Avatar';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
+import IconButton from '@material-ui/core/IconButton';
+import Menu from './Menu';
 
-const SideBar = () => {
+const SideBar = ({user}) => {
     return (
         <div className={styles.sideBarContainer}>
             <div className={styles.headerSideBar}>
-                <Avatar src='../img/pp.jpg'/>
+                <Avatar src={user.image}/>
                 <div className={styles.headerIcons}>
-                    <DonutLargeIcon fontSize='small'/>
-                    <ChatIcon fontSize='small'/>
-                    <MoreVertIcon fontSize='small'/>
+                    <IconButton style={{color: '#b1b3b5'}}><DonutLargeIcon fontSize='small'/></IconButton>
+                    <IconButton style={{color: '#b1b3b5'}}><ChatIcon fontSize='small'/></IconButton>
+                    <Menu/>
                 </div>
             </div>
             <div className={styles.searchBar}>

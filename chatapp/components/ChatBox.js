@@ -7,6 +7,8 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import MicIcon from '@material-ui/icons/Mic';
 import SendIcon from '@material-ui/icons/Send';
+import moment from 'moment';
+import IconButton from '@material-ui/core/IconButton'
 
 const ChatBox = () => {
     const [message, setMessage] = useState('');
@@ -17,7 +19,7 @@ const ChatBox = () => {
         setMessage(value);
     }
 
-    const hasMessageTyped = message !== '' ? <SendIcon style={{color: '#b1b3b5'}}/> : <MicIcon style={{color: '#b1b3b5'}}/>;
+    const hasMessageTyped = message !== '' ? <IconButton style={{color: '#b1b3b5'}}><SendIcon/></IconButton> : <IconButton style={{color: '#b1b3b5'}}><MicIcon/></IconButton>;
 
     return (
         <div className={styles.chatBoxContainer}>
@@ -29,18 +31,33 @@ const ChatBox = () => {
                         <span className={styles.lastSeen}>Last seen</span>
                     </div>
                     <div className={styles.chatBoxHeaderIcons}>
-                        <SearchIcon fontSize='small'/>
-                        <MoreVertIcon fontSize='small'/>
+                        <IconButton style={{color: '#b1b3b5'}}><SearchIcon fontSize='small'/></IconButton>
+                        <IconButton style={{color: '#b1b3b5'}}><MoreVertIcon fontSize='small'/></IconButton>
                     </div>
                 </div>
             </div>
             <div className={styles.chatBoxMessages}>
-
+                <div className={styles.messageBoxStart}>
+                    <div className={styles.messageStart}>
+                        <span>
+                            Estaba subiendo los cursos a la app, y como no tenía la imagen del curso puse otra para rellenar el espacio, pero ya hasta que estaba guardado recordé que no se podía editar la imagen ¿crees que me puedas ayudar con eso? Sólo es una.
+                        </span>
+                        <span className={styles.dateMessage}>{moment().format('LLL')}</span>
+                    </div>
+                </div>
+                <div className={styles.messageBoxEnd}>
+                    <div className={styles.messageEnd}>
+                        <span>
+                            Solo digame cual es y la imagen nueva
+                        </span>
+                        <span className={styles.dateMessage}>{moment().format('LLL')}</span>
+                    </div>
+                </div>
             </div>
             <div className={styles.chatBoxInputMessage}>
                 <div className={styles.chatBoxInputMessageIcons}>
-                    <InsertEmoticonIcon/>
-                    <AttachFileIcon/>
+                    <IconButton style={{color: '#b1b3b5'}}><InsertEmoticonIcon/></IconButton>
+                    <IconButton style={{color: '#b1b3b5'}}><AttachFileIcon/></IconButton>
                 </div>
                 <form className={styles.chatBoxInputMessageInput}>
                     <input type='text' placeholder='Type a message' value={message} onChange={(e) => {handleInputOnChange(e)}}/>

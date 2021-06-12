@@ -1,0 +1,20 @@
+import express from 'express';
+import socketio from 'socket.io';
+import http from'http';
+import router from './router';
+
+const app = express();
+app.use(router);
+const httpServer = http.createServer(app);
+const io = new socketio.Server(httpServer);
+
+io.on('connection', (socket) => {
+    console.log('We have a new connection!')
+    socket.on('disconnect', () => {
+        console.log('User has left :(');
+    })
+})
+
+
+httpServer.listen(5200, () => console.log('Server is running on port: 5200'))
+
