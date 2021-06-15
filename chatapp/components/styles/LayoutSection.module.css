@@ -1,0 +1,6 @@
+.sectionContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #131c21;
+    flex: 1;
+}

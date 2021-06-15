@@ -9,7 +9,8 @@ const variants = {
     open: { 
         display: 'block',
         y: 10, 
-        x: -160
+        x: -160,
+        zIndex: 1000
     },
     closed: { 
         opacity: 0, 
@@ -21,7 +22,7 @@ const variants = {
     },
 }
 
-const MenuMore = () => {
+const MenuMore = ({}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isOnFocus, setIsOnFocus] = useState('');
 

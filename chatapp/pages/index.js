@@ -4,6 +4,7 @@ import SideBar from '../components/SideBar';
 import ChatBox from '../components/ChatBox';
 import { getSession } from 'next-auth/client';
 import io from 'socket.io-client';
+import instance from '../axios';
 
 const home = ({session}) => {
   let socket;
@@ -31,7 +32,7 @@ const home = ({session}) => {
 
 export async function getServerSideProps({req}) {
   const session = await getSession({req});
-
+  
   if (!session && req) {
     return {
       redirect: {
@@ -39,6 +40,23 @@ export async function getServerSideProps({req}) {
         permanent: false
       }
     }
+  }
+
+  if (session) {
+    instance.post('/new_user', {
+      name: session.user.name,
+      email: session.user.email,
+    })
+    .catch((error) => {
+      if (error) {
+        return {
+          redirect: {
+            destination: '/signin',
+            permanent: false
+          }
+        }
+      }
+    });
   }
 
   return {

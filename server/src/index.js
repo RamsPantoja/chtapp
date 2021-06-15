@@ -5,6 +5,7 @@ import router from './router';
 
 
 const app = express();
+app.use(express.json());
 app.use(router);
 const httpServer = http.createServer(app);
 const io = new socketio.Server(httpServer, {

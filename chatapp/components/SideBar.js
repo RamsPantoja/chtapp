@@ -1,14 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles/SideBar.module.css';
 import Avatar from '@material-ui/core/Avatar';
-import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import Menu from './Menu';
 import Badge from '@material-ui/core/Badge';
+import LayoutSection from './LayoutSection';
+import Chats from './Chats';
+import Friends from './Friends';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 
 const SideBar = ({user}) => {
+    const [whichComponent, setWhichComponent] = useState('chats');
+    let sectionComponent;
+
+    const handleComponentSection = (e, component) => {
+        e.preventDefault();
+        setWhichComponent(component);
+    }
+
+    switch (whichComponent) {
+        case 'chats':
+            sectionComponent = <Chats/>;
+            break;
+        case 'friends':
+            sectionComponent = <Friends/>
+            break;
+        default:
+            sectionComponent = <Chats/>
+            break;
+    }
+
     return (
         <div className={styles.sideBarContainer}>
             <div className={styles.headerSideBar}>
@@ -16,8 +40,13 @@ const SideBar = ({user}) => {
                     <Avatar src={user.image}/>
                 </Badge>
                 <div className={styles.headerIcons}>
-                    <IconButton style={{color: '#b1b3b5'}}><DonutLargeIcon fontSize='small'/></IconButton>
-                    <IconButton style={{color: '#b1b3b5'}}><ChatIcon fontSize='small'/></IconButton>
+                    <IconButton style={{color: '#b1b3b5'}}>
+                        <Badge badgeContent={2} classes={{badge: styles.badgeNotifications}}>
+                            <NotificationsIcon fontSize='small'/>
+                        </Badge>
+                    </IconButton>
+                    <IconButton style={{color: '#b1b3b5'}} onClick={(e) => {handleComponentSection(e, 'chats')}}><ChatIcon fontSize='small'/></IconButton>
+                    <IconButton style={{color: '#b1b3b5'}} onClick={(e) => {handleComponentSection(e, 'friends')}}><EmojiPeopleIcon fontSize='small'/></IconButton>
                     <Menu/>
                 </div>
             </div>
@@ -27,38 +56,9 @@ const SideBar = ({user}) => {
                     <input type='text' placeholder='Search or start a new chat' className={styles.inputSearch}/>
                 </div>
             </div>
-            <div className={styles.chatsBar}>
-                <div className={styles.chat}>
-                    <Avatar src='../img/pp2.jpg'/>
-                    <div className={styles.chatInf}>
-                        <div className={styles.chatInfLeft}>
-                            <span className={styles.chatName}>ChatName</span>
-                            <span className={styles.chatCurrentMessage}>Current message</span>
-                        </div>
-                        <span>Date</span>
-                    </div>
-                </div>
-                <div className={styles.chat}>
-                    <Avatar src='../img/pp2.jpg'/>
-                    <div className={styles.chatInf}>
-                        <div className={styles.chatInfLeft}>
-                            <span className={styles.chatName}>ChatName</span>
-                            <span className={styles.chatCurrentMessage}>Current message</span>
-                        </div>
-                        <span>Date</span>
-                    </div>
-                </div>
-                <div className={styles.chat}>
-                    <Avatar src='../img/pp2.jpg'/>
-                    <div className={styles.chatInf}>
-                        <div className={styles.chatInfLeft}>
-                            <span className={styles.chatName}>ChatName</span>
-                            <span className={styles.chatCurrentMessage}>Current message</span>
-                        </div>
-                        <span>Date</span>
-                    </div>
-                </div>
-            </div>
+            <LayoutSection>
+                {sectionComponent}
+            </LayoutSection>
         </div>
     )
 }
