@@ -47,6 +47,7 @@
     flex: 1;
     justify-content: flex-start;
     text-decoration: none;
+    color: #ed4242;
 }
 
 .menuItem:hover {

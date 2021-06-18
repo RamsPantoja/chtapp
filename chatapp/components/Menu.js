@@ -22,7 +22,7 @@ const variants = {
     },
 }
 
-const MenuMore = ({}) => {
+const MenuMore = ({handleComponentContent}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isOnFocus, setIsOnFocus] = useState('');
 
@@ -61,10 +61,7 @@ const MenuMore = ({}) => {
                 x: -160,
             }}>
                 <motion.ul className={styles.backgroundListMenu}>
-                    <motion.li className={styles.menuItem}>New group</motion.li>
-                    <motion.li className={styles.menuItem}>Create a room</motion.li>
-                    <motion.li className={styles.menuItem}>Profile</motion.li>
-                    <motion.li className={styles.menuItem}>Settings</motion.li>
+                    <motion.li className={styles.menuItem} onClick={(e) => {handleComponentContent(e, 'add_friend')}}>Add friend</motion.li>
                     <motion.li className={styles.menuItem} onClick={() => signOut()}>Log out</motion.li>
                 </motion.ul>
             </motion.nav>

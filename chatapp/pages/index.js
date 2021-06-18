@@ -5,8 +5,12 @@ import ChatBox from '../components/ChatBox';
 import { getSession } from 'next-auth/client';
 import io from 'socket.io-client';
 import instance from '../axios';
+import LayoutContent from '../components/LayoutContent';
+import useHandleContentPage from '../components/hooks/useHandleContentPage';
 
 const home = ({session}) => {
+  const [contentComponent, handleComponentContent] = useHandleContentPage();
+
   let socket;
   const endPoint = 'http://localhost:5200'
 
@@ -23,8 +27,10 @@ const home = ({session}) => {
   return (
     <div className={styles.backgroundApp}>
       <div className={styles.chatContainer}>
-        <SideBar user={session.user}/>
-        <ChatBox/>
+        <SideBar 
+        user={session.user}
+        handleComponentContent={handleComponentContent}/>
+        <LayoutContent children={contentComponent}/>
       </div>
     </div>
   )

@@ -1,0 +1,32 @@
+.chat {
+    display: flex;
+    padding: 0 1em;
+    height: 4.5em;
+    align-items: center;
+    border-bottom: 1px solid #3c4247;
+}
+
+.chatInf {
+    color: #b1b3b5;
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.chatInfLeft {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-left: 1em;
+}
+
+.chatName {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.chat:hover {
+    background-color: #33383b;
+    cursor: pointer;
+}

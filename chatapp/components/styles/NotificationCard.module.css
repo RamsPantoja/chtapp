@@ -1,0 +1,30 @@
+.notificationCardFriendRequest {
+    display: flex;
+    height: 4.5em;
+    align-items: center;
+    padding: 0 1em;
+    border-bottom: 1px solid #3c4247;
+}
+
+.notificationCardFriendRequest:hover {
+    background-color: #2a2f32;
+}
+
+.friendRequestInf {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    align-items: center;
+}
+
+.friendRequestInf > span {
+    color: #b1b3b5;
+    font-weight: bold;
+    padding-left: 1em;
+}
+
+.friendIconsRequest {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

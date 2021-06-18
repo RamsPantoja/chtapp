@@ -1,0 +1,17 @@
+.notificationsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.notifications > span {
+    color: #b1b3b5;
+    padding: 1em;
+    border-bottom: 1px solid #3c4247;
+    width: 90%;
+}

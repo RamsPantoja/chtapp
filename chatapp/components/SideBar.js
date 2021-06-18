@@ -11,8 +11,9 @@ import LayoutSection from './LayoutSection';
 import Chats from './Chats';
 import Friends from './Friends';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import Notifications from './Notifications';
 
-const SideBar = ({user}) => {
+const SideBar = ({user, handleComponentContent}) => {
     const [whichComponent, setWhichComponent] = useState('chats');
     let sectionComponent;
 
@@ -23,10 +24,13 @@ const SideBar = ({user}) => {
 
     switch (whichComponent) {
         case 'chats':
-            sectionComponent = <Chats/>;
+            sectionComponent = <Chats handleComponentContent={handleComponentContent}/>;
             break;
         case 'friends':
             sectionComponent = <Friends/>
+            break;
+        case 'notifications':
+            sectionComponent = <Notifications/>
             break;
         default:
             sectionComponent = <Chats/>
@@ -40,14 +44,15 @@ const SideBar = ({user}) => {
                     <Avatar src={user.image}/>
                 </Badge>
                 <div className={styles.headerIcons}>
-                    <IconButton style={{color: '#b1b3b5'}}>
+                    <IconButton style={{color: '#b1b3b5'}} onClick={(e) => {handleComponentSection(e, 'notifications')}}>
                         <Badge badgeContent={2} classes={{badge: styles.badgeNotifications}}>
                             <NotificationsIcon fontSize='small'/>
                         </Badge>
                     </IconButton>
                     <IconButton style={{color: '#b1b3b5'}} onClick={(e) => {handleComponentSection(e, 'chats')}}><ChatIcon fontSize='small'/></IconButton>
                     <IconButton style={{color: '#b1b3b5'}} onClick={(e) => {handleComponentSection(e, 'friends')}}><EmojiPeopleIcon fontSize='small'/></IconButton>
-                    <Menu/>
+                    <Menu
+                    handleComponentContent={handleComponentContent}/>
                 </div>
             </div>
             <div className={styles.searchBar}>

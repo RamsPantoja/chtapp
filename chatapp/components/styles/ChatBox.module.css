@@ -1,6 +1,6 @@
 .chatBoxContainer {
     display: flex;
-    flex: 0.7;
+    flex: 1;
     flex-direction: column;
 }
 
