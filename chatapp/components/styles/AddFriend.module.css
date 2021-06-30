@@ -1,0 +1,71 @@
+.addFriendContainer {
+    display: flex;
+    flex: 1;
+    background-color: #1e2428;
+    flex-direction: column;
+}
+
+
+.addFriendForm {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 2em;
+    flex: 0.2;
+}
+
+.addFriendForm > p {
+    color: #b1b3b5;
+}
+
+.addFriendForm > h3 {
+    color: #ffffff;
+}
+
+.addFriendInput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addFriendInput > input {
+    display: flex;
+    outline: none;
+    border: none;
+    padding: 1em;
+    border-radius: 2em;
+    background-color: #33383b;
+    color: #b1b3b5;
+    font-size: 1rem;
+    font-weight: bold;
+    flex: 0.95;
+}
+
+.addFriendInput > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+    padding: 1em;
+    border-radius: 2em;
+    background-color: #056162;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.addFriendInput > button:hover {
+    cursor: pointer;
+    background-color: #05606283;
+}
+.addFriendSpan {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0.8;
+}
+
+.addFriendSpan > p {
+    color: #b1b3b5;
+    font-size: xx-large;
+}

@@ -15,3 +15,10 @@
     border-bottom: 1px solid #3c4247;
     width: 90%;
 }
+
+.noFriendRequestSpan {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #b1b3b5;
+}

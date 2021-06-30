@@ -4,7 +4,7 @@ import ChatCard from './ChatCard';
 
 const Chats = ({handleComponentContent}) => {
     return (
-        <div className={styles.chatsContainer} >
+        <div className={styles.chatsContainer}>
             <ChatCard handleComponentContent={handleComponentContent}/>
         </div>
     )

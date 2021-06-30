@@ -12,9 +12,11 @@ import Chats from './Chats';
 import Friends from './Friends';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Notifications from './Notifications';
+import useHandleGetFriendRequest from './hooks/useHandleGetFriendRequest';
 
-const SideBar = ({user, handleComponentContent}) => {
+const SideBar = ({user, handleComponentContent, socket}) => {
     const [whichComponent, setWhichComponent] = useState('chats');
+    const [friendRequests] = useHandleGetFriendRequest(socket, user.email);
     let sectionComponent;
 
     const handleComponentSection = (e, component) => {
@@ -30,7 +32,7 @@ const SideBar = ({user, handleComponentContent}) => {
             sectionComponent = <Friends/>
             break;
         case 'notifications':
-            sectionComponent = <Notifications/>
+            sectionComponent = <Notifications friendRequests={friendRequests}/>
             break;
         default:
             sectionComponent = <Chats/>
@@ -45,7 +47,7 @@ const SideBar = ({user, handleComponentContent}) => {
                 </Badge>
                 <div className={styles.headerIcons}>
                     <IconButton style={{color: '#b1b3b5'}} onClick={(e) => {handleComponentSection(e, 'notifications')}}>
-                        <Badge badgeContent={2} classes={{badge: styles.badgeNotifications}}>
+                        <Badge badgeContent={friendRequests.length} classes={{badge: styles.badgeNotifications}}>
                             <NotificationsIcon fontSize='small'/>
                         </Badge>
                     </IconButton>

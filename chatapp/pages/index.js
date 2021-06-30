@@ -1,35 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles/index.module.css';
 import SideBar from '../components/SideBar';
-import ChatBox from '../components/ChatBox';
 import { getSession } from 'next-auth/client';
-import io from 'socket.io-client';
 import instance from '../axios';
 import LayoutContent from '../components/LayoutContent';
 import useHandleContentPage from '../components/hooks/useHandleContentPage';
+import { io } from 'socket.io-client';
 
 const home = ({session}) => {
   const [contentComponent, handleComponentContent] = useHandleContentPage();
-
-  let socket;
-  const endPoint = 'http://localhost:5200'
+  const socket = io('http://localhost:5200');
 
   useEffect(() => {
-    socket = io(endPoint);
-    socket.emit('User connected', { name: session.user.name });
+    socket.emit('user:connected', { email: session.user.email });
 
     return () => {
       socket.emit('disconnect');
       socket.off();
     }
-  }, [endPoint]);
+  }, []);
 
   return (
     <div className={styles.backgroundApp}>
       <div className={styles.chatContainer}>
         <SideBar 
         user={session.user}
-        handleComponentContent={handleComponentContent}/>
+        handleComponentContent={handleComponentContent}
+        socket={socket}/>
         <LayoutContent children={contentComponent}/>
       </div>
     </div>
@@ -55,12 +52,7 @@ export async function getServerSideProps({req}) {
     })
     .catch((error) => {
       if (error) {
-        return {
-          redirect: {
-            destination: '/signin',
-            permanent: false
-          }
-        }
+        window.location.reload();
       }
     });
   }

@@ -1,8 +1,7 @@
 import '../styles/globals.css'
 import { Provider } from 'next-auth/client';
 
-
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, socket }) {
   return (
     <Provider session={pageProps.session}>
       <Component {...pageProps}/>
