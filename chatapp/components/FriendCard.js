@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton'
 import { motion } from 'framer-motion';
@@ -6,8 +6,10 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import styles from './styles/FriendCard.module.css';
 import useHandleOnClickOutside from './hooks/useHandleOnClickOutside';
+import Badge from '@material-ui/core/Badge';
 
-const FriendCard = () => {
+
+const FriendCard = ({userName, isOnline, img}) => {
     const wrapperRef = useRef(null)
     const [open, isOnFocus, openMenu] = useHandleOnClickOutside(wrapperRef);
 
@@ -30,11 +32,13 @@ const FriendCard = () => {
 
     return (
         <div className={styles.friendCard}>
-            <Avatar/>
+            <Badge classes={{dot: isOnline ? styles.dotBadgeOnline : styles.dotBadgeOffline}} overlap='circle' variant='dot' anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}>
+                <Avatar src={img}/>
+            </Badge>
             <div className={styles.friendCardInf}>
                 <div className={styles.friendCardLeftInf}>
-                    <span>FrienName</span>
-                    <span>Status</span>
+                    <div>{userName}</div>
+                    <span>{isOnline ? 'Online' : 'Offline'}</span>
                 </div>
                 <div className={styles.friendCardIcons}>
                     <IconButton style={{color: '#b1b3b5'}}>

@@ -12,11 +12,11 @@ import Chats from './Chats';
 import Friends from './Friends';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Notifications from './Notifications';
-import useHandleGetFriendRequest from './hooks/useHandleGetFriendRequest';
+import useHandleFriendRequest from './hooks/useHandleFriendRequest';
 
-const SideBar = ({user, handleComponentContent, socket}) => {
+const SideBar = ({user, handleComponentContent}) => {
     const [whichComponent, setWhichComponent] = useState('chats');
-    const [friendRequests] = useHandleGetFriendRequest(socket, user.email);
+    const [friendRequests, handleAcceptFriendRequest, friendsByUser] = useHandleFriendRequest(user.email);
     let sectionComponent;
 
     const handleComponentSection = (e, component) => {
@@ -29,10 +29,13 @@ const SideBar = ({user, handleComponentContent, socket}) => {
             sectionComponent = <Chats handleComponentContent={handleComponentContent}/>;
             break;
         case 'friends':
-            sectionComponent = <Friends/>
+            sectionComponent = <Friends friendsByUser={friendsByUser}/>
             break;
         case 'notifications':
-            sectionComponent = <Notifications friendRequests={friendRequests}/>
+            sectionComponent = <Notifications 
+            friendRequests={friendRequests}
+            receiverId={user.email}
+            handleAcceptFriendRequest={handleAcceptFriendRequest}/>
             break;
         default:
             sectionComponent = <Chats/>

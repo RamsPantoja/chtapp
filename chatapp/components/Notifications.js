@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import NotificationCardFriendRequest from './NotificationCardFriendRequest';
 import styles from './styles/Notifications.module.css';
-import instance from '../axios';
-import { getSession } from 'next-auth/client';
 
-const Notifications = ({friendRequests}) => {
+const Notifications = ({friendRequests, receiverId, handleAcceptFriendRequest}) => {
 
     const notifications = friendRequests.length > 0 ? friendRequests.map((friendRequest) => {
         return (
             <NotificationCardFriendRequest
             key={friendRequest._id}
             senderName={friendRequest.senderName}
-            senderImg={friendRequest.senderImg}/>
+            senderImg={friendRequest.senderImg}
+            senderId={friendRequest.senderId}
+            receiverId={receiverId}
+            handleAcceptFriendRequest={handleAcceptFriendRequest}/>
         )
     }) : <p className={styles.noFriendRequestSpan}>You don´t have friend requests</p>;
 

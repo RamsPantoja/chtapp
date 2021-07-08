@@ -5,6 +5,7 @@ import router from './router';
 import cors from 'cors';
 import userConnectedHandler from './handlers/userHandler';
 import notificationHandler from './handlers/notificationHandler';
+import friendlyRelationshipHandler from './handlers/friendlyRelationshipHandler';
 
 
 const app = express();
@@ -20,9 +21,18 @@ const io = new socketio.Server(httpServer, {
     }
 });
 
+io.use((socket, next) => {
+    const session = socket.handshake.auth.session;
+    if(!session) {
+        return next(new Error('User no login'));
+    }
+    next();
+});
+
 const onConnection = (socket) => {
     userConnectedHandler(io, socket);
     notificationHandler(io, socket);
+    friendlyRelationshipHandler(io, socket);
 }
 
 io.on('connection', onConnection);

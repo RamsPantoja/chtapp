@@ -22,6 +22,17 @@
 .friendCardLeftInf {
     display: flex;
     flex-direction: column;
+}
+
+.friendCardLeftInf > div {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 8em;
+    text-overflow: ellipsis;
+    color: #ffffff;
+}
+
+.friendCardLeftInf > span {
     color: #b1b3b5;
 }
 
@@ -53,4 +64,12 @@
 .menuItem:hover {
     background-color: #131c21;
     cursor: pointer;
+}
+
+.dotBadgeOnline {
+    background-color: #44b700;
+}
+
+.dotBadgeOffline {
+    background-color: grey;
 }

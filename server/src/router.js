@@ -25,7 +25,8 @@ router.post('/new_user', async (req, res) => {
             const newUser = await Users({
                 userName: user.name,
                 email: user.email,
-                isOnline: true
+                isOnline: true,
+                img: user.img
             });
 
             newUser.save();
@@ -35,6 +36,12 @@ router.post('/new_user', async (req, res) => {
         } catch (error) {
             res.status(404).send(error);
         }
+    } else {
+        await Users.findByIdAndUpdate({email: user.email},{
+            img: user.img
+        }, (err, doc) => {
+            res.status(401).send(err);
+        });
     }
 });
 
@@ -76,6 +83,5 @@ router.post('/friend_request', async (req, res) => {
         return res.status(403).send('Something went wrong')
     }
 });
-
 
 module.exports = router;
