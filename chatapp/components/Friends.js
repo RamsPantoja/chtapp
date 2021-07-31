@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles/Friends.module.css';
 import FriendCard from './FriendCard';
 
-const Friends = ({friendsByUser}) => {
+const Friends = ({friendsByUser, handleChatBoxComponentWithFriendInf}) => {
     return (
         <div className={styles.friendsContainer}>
             <div className={styles.friendsConnected}>
@@ -14,7 +14,9 @@ const Friends = ({friendsByUser}) => {
                             key={friend._id}
                             userName={friend.userName}
                             isOnline={friend.isOnline}
-                            img={friend.img}/>
+                            img={friend.img}
+                            id={friend._id}
+                            handleChatBoxComponentWithFriendInf={handleChatBoxComponentWithFriendInf}/>
                         )
                     }
                 })}
@@ -29,7 +31,9 @@ const Friends = ({friendsByUser}) => {
                                 key={friend._id}
                                 userName={friend.userName}
                                 isOnline={friend.isOnline}
-                                img={friend.img}/>
+                                img={friend.img}
+                                handleChatBoxComponentWithFriendInf={handleChatBoxComponentWithFriendInf}
+                                id={friend._id}/>
                             )
                         }
                     })

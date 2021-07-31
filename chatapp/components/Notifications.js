@@ -12,7 +12,8 @@ const Notifications = ({friendRequests, receiverId, handleAcceptFriendRequest}) 
             senderImg={friendRequest.senderImg}
             senderId={friendRequest.senderId}
             receiverId={receiverId}
-            handleAcceptFriendRequest={handleAcceptFriendRequest}/>
+            handleAcceptFriendRequest={handleAcceptFriendRequest}
+            notificationId={friendRequest._id}/>
         )
     }) : <p className={styles.noFriendRequestSpan}>You don´t have friend requests</p>;
 

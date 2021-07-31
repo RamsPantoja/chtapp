@@ -14,7 +14,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Notifications from './Notifications';
 import useHandleFriendRequest from './hooks/useHandleFriendRequest';
 
-const SideBar = ({user, handleComponentContent}) => {
+const SideBar = ({user, handleComponentContent, handleChatBoxComponentWithFriendInf}) => {
     const [whichComponent, setWhichComponent] = useState('chats');
     const [friendRequests, handleAcceptFriendRequest, friendsByUser] = useHandleFriendRequest(user.email);
     let sectionComponent;
@@ -26,10 +26,13 @@ const SideBar = ({user, handleComponentContent}) => {
 
     switch (whichComponent) {
         case 'chats':
-            sectionComponent = <Chats handleComponentContent={handleComponentContent}/>;
+            sectionComponent = <Chats 
+            handleComponentContent={handleComponentContent}/>;
             break;
         case 'friends':
-            sectionComponent = <Friends friendsByUser={friendsByUser}/>
+            sectionComponent = <Friends 
+            friendsByUser={friendsByUser}
+            handleChatBoxComponentWithFriendInf={handleChatBoxComponentWithFriendInf}/>
             break;
         case 'notifications':
             sectionComponent = <Notifications 
@@ -45,9 +48,7 @@ const SideBar = ({user, handleComponentContent}) => {
     return (
         <div className={styles.sideBarContainer}>
             <div className={styles.headerSideBar}>
-                <Badge classes={{dot: styles.dotBadge}} overlap='circle' variant='dot' anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}>
-                    <Avatar src={user.image}/>
-                </Badge>
+                <Avatar src={user.image}/>
                 <div className={styles.headerIcons}>
                     <IconButton style={{color: '#b1b3b5'}} onClick={(e) => {handleComponentSection(e, 'notifications')}}>
                         <Badge badgeContent={friendRequests.length} classes={{badge: styles.badgeNotifications}}>

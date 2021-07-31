@@ -5,7 +5,7 @@ import FriendRequests from '../models/FriendRequest';
 
 module.exports = (io, socket) => {
     const acceptRequest = async (payload, callback) => {
-        const {senderId, receiverId} = payload;
+        const {senderId, receiverId, notificationId} = payload;
         await dbConnect();
 
         const receiver = await Users.findOne({email: receiverId});
@@ -22,7 +22,8 @@ module.exports = (io, socket) => {
             makeFriends.entitysWithNewFriend(sender, receiver);
             makeFriends.entitysWithNewFriend(receiver, sender);
 
-            //await friendRequests.find()
+            await FriendRequests.findOneAndRemove({_id: notificationId});
+            
 
             callback({
                 eventMessage: 'success.'
@@ -75,6 +76,19 @@ module.exports = (io, socket) => {
         }        
     }
 
+    const getFriendInf = async (payload, callback) => {
+        await dbConnect();
+
+        const friendInf = await Users.findOne({_id: payload.id});
+
+        if (friendInf) {
+            callback({
+                success: friendInf
+            })
+        }
+    }
+
     socket.on('friendlyRelationship:acceptRequest', acceptRequest)
     socket.on('friendlyRelationship:getFriendsByUser', getFriendsByUser)
+    socket.on('friendlyRelationship:getFriendInf', getFriendInf)
 }

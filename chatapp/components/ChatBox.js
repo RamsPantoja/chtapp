@@ -10,7 +10,7 @@ import SendIcon from '@material-ui/icons/Send';
 import moment from 'moment';
 import IconButton from '@material-ui/core/IconButton'
 
-const ChatBox = () => {
+const ChatBox = ({friendChatInf}) => {
     const [message, setMessage] = useState('');
 
     const handleInputOnChange = (e) => {
@@ -19,16 +19,19 @@ const ChatBox = () => {
         setMessage(value);
     }
 
+
+    const {userName, img, isOnline} = friendChatInf;
+
     const hasMessageTyped = message !== '' ? <IconButton style={{color: '#b1b3b5'}}><SendIcon/></IconButton> : <IconButton style={{color: '#b1b3b5'}}><MicIcon/></IconButton>;
 
     return (
         <div className={styles.chatBoxContainer}>
             <div className={styles.chatBoxHeader}>
-                <Avatar src='../img/pp2.jpg'/>
+                <Avatar src={img}/>
                 <div className={styles.chatBoxHeaderRight}>
                     <div className={styles.contactInf}>
-                        <span className={styles.chatName}>ChatName</span>
-                        <span className={styles.lastSeen}>Last seen</span>
+                        <span className={styles.chatName}>{userName}</span>
+                        <span className={styles.lastSeen}>{isOnline ? 'Online' : 'Offline'}</span>
                     </div>
                     <div className={styles.chatBoxHeaderIcons}>
                         <IconButton style={{color: '#b1b3b5'}}><SearchIcon fontSize='small'/></IconButton>

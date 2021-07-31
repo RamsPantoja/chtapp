@@ -8,7 +8,10 @@ import useHandleContentPage from '../components/hooks/useHandleContentPage';
 import socket from '../socket';
 
 const home = ({session}) => {
-  const [contentComponent, handleComponentContent] = useHandleContentPage();
+  const [
+    contentComponent, 
+    handleComponentContent, 
+    handleChatBoxComponentWithFriendInf ] = useHandleContentPage();
 
   if (session) {
     socket.auth = { session };
@@ -25,8 +28,9 @@ const home = ({session}) => {
     socket.emit('user:connected', { email: session.user.email });
 
     return () => {
-      socket.emit('disconnect');
       socket.off('connect_error');
+      socket.emit('disconnect')
+      socket.disconnect();
     }
   },[session]);
 
@@ -35,7 +39,8 @@ const home = ({session}) => {
       <div className={styles.chatContainer}>
         <SideBar 
         user={session.user}
-        handleComponentContent={handleComponentContent}/>
+        handleComponentContent={handleComponentContent}
+        handleChatBoxComponentWithFriendInf={handleChatBoxComponentWithFriendInf}/>
         <LayoutContent children={contentComponent}/>
       </div>
     </div>
@@ -62,7 +67,7 @@ export async function getServerSideProps({req}) {
     })
     .catch((error) => {
       if (error) {
-        window.location.reload();
+        console.log(error)
       }
     });
   }

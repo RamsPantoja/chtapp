@@ -7,12 +7,13 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import styles from './styles/FriendCard.module.css';
 import useHandleOnClickOutside from './hooks/useHandleOnClickOutside';
 import Badge from '@material-ui/core/Badge';
+import useHandleContentPage from './hooks/useHandleContentPage';
 
 
-const FriendCard = ({userName, isOnline, img}) => {
+const FriendCard = ({userName, isOnline, img, handleChatBoxComponentWithFriendInf, id}) => {
     const wrapperRef = useRef(null)
     const [open, isOnFocus, openMenu] = useHandleOnClickOutside(wrapperRef);
-
+    
     const variants = {
         open: {
             display: 'block',
@@ -41,7 +42,7 @@ const FriendCard = ({userName, isOnline, img}) => {
                     <span>{isOnline ? 'Online' : 'Offline'}</span>
                 </div>
                 <div className={styles.friendCardIcons}>
-                    <IconButton style={{color: '#b1b3b5'}}>
+                    <IconButton style={{color: '#b1b3b5'}} onClick={(e) => {handleChatBoxComponentWithFriendInf(e, 'chat_box', id)}}>
                         <ChatBubbleIcon fontSize='small'/>
                     </IconButton>
                     <IconButton style={{color: '#b1b3b5', backgroundColor: `${isOnFocus}`}} onClick={openMenu} ref={wrapperRef}>

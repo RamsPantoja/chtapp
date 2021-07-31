@@ -13,11 +13,12 @@ const useHandleFriendRequest = (userEmail) => {
         });
     }, [friendRequests]);
 
-    const handleAcceptFriendRequest = (e, senderId, receiverId) => {
+    const handleAcceptFriendRequest = (e, senderId, receiverId, notificationId) => {
         e.preventDefault()
         socket.emit('friendlyRelationship:acceptRequest', {
             senderId: senderId,
-            receiverId: receiverId
+            receiverId: receiverId,
+            notificationId: notificationId
         }, (res) => {
             console.log(res.eventMessage);
         });
@@ -32,7 +33,7 @@ const useHandleFriendRequest = (userEmail) => {
             } else if (res.success) {
                 setFriendsByUser(res.success);
             }
-        })
+        });
     }, [friendsByUser])
 
     return [friendRequests, handleAcceptFriendRequest, friendsByUser];
